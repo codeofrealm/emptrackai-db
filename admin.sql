@@ -156,7 +156,7 @@ VALUES (
     'ADMIN'
 );
 
--- Execute Login (Creates session entry)
+-- -- Execute Login (Creates session entry)
 SELECT * FROM login_admin('admin@example.com', 'AdminPass@123');
 
 
@@ -197,3 +197,14 @@ SELECT
 FROM admins a
 INNER JOIN admin_jwt_sessions s ON a.id = s.admin_id
 WHERE s.is_active = TRUE;
+
+
+ALTER TABLE public.admins OWNER TO emptrackai;
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON TABLE public.admins
+TO emptrackai;
+
+GRANT USAGE, SELECT, UPDATE
+ON SEQUENCE public.admins_id_seq
+TO emptrackai;
