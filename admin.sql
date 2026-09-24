@@ -199,12 +199,14 @@ INNER JOIN admin_jwt_sessions s ON a.id = s.admin_id
 WHERE s.is_active = TRUE;
 
 
+ALTER DATABASE emptrackai OWNER TO emptrackai;
+ALTER SCHEMA public OWNER TO emptrackai;
+
 ALTER TABLE public.admins OWNER TO emptrackai;
 
+GRANT USAGE, CREATE ON SCHEMA public TO emptrackai;
 GRANT SELECT, INSERT, UPDATE, DELETE
-ON TABLE public.admins
-TO emptrackai;
+ON TABLE public.admins TO emptrackai;
 
 GRANT USAGE, SELECT, UPDATE
-ON SEQUENCE public.admins_id_seq
-TO emptrackai;
+ON SEQUENCE public.admins_id_seq TO emptrackai;
